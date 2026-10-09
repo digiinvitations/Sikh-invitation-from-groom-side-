@@ -1,0 +1,8 @@
+{
+  "name": "Remix Waheguru sikh wedding PT-2 remix2",
+  "description": "A premium, elegant, mobile-first Wedding Invitation E-Card Website.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
