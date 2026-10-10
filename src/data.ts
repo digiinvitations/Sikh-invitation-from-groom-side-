@@ -26,7 +26,7 @@ export const weddingData: WeddingData = {
   heroMessage: "With the divine blessings of Sri Guru Granth Sahib Ji & Waheguru Ji\nwe cordially invite you to celebrate the auspicious Sagan & Ring Ceremony of",
   invitationMessage: "With the heavenly blessings of Sri Guru Granth Sahib Ji, our respected elders, and Waheguru Ji, we are honored to invite you to celebrate the auspicious Sagan & Ring Ceremony of Jaspreet & Jasmeet as they begin their sacred journey together in faith, love, and devotion.\n\nWe humbly request your gracious presence and blessings on this joyful occasion.",
   invitedBy: "Tirajveer Singh & Mehrajveer Singh",
-  familyRegards: "Bhusari Family",
+  familyRegards: "Bhusari Family & Kalra Family",
   rsvpAddress: "",
   rsvpPhones: ["9415031002", "7860333336"],
   rsvpContacts: [
@@ -51,7 +51,7 @@ export const weddingData: WeddingData = {
       drTaranpreetSingh: "Dr. Taranpreet Singh Bhusari",
       drHargeetKaur: "Dr. Hargeet Kaur",
     },
-    specialInvitation: "Tirajveer Singh & Mehrajveer Singh",
+    specialInvitation: "S. Inder Singh Bhusari & Sita Rani",
   },
   events: [
     {
@@ -97,5 +97,5 @@ export const weddingData: WeddingData = {
   ],
   musicUrl: "https://www.image2url.com/r2/default/audio/1789746712370-13e5b6dc-06da-4293-b9ba-298c76e37a93.mp3",
   openingMusicUrl: "https://www.image2url.com/r2/default/audio/1789751954552-94db245b-3b41-4bfc-858b-4d8596814d9c.mp3",
-  closingMessage: "ਵਾਹਿਗੁਰੂ ਜੀ ਕਾ ਖ਼ਾਲਸਾ ॥ ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫ਼ਤਹਿ ॥\n\nWith the divine grace and blessings of Waheguru Ji, we look forward to celebrating this joyous Sagan & Ring Ceremony with you and your family!\n\nWith Love & Regards:\nBhusari Family"
+  closingMessage: "ਵਾਹਿਗੁਰੂ ਜੀ ਕਾ ਖ਼ਾਲਸਾ ॥ ਵਾਹਿਗੁਰੂ ਜੀ ਕੀ ਫ਼ਤਹਿ ॥\n\nWith the divine grace and blessings of Waheguru Ji, we look forward to celebrating this joyous Sagan & Ring Ceremony with you and your family!\n\nWith Love & Regards:\nBhusari Family & Kalra Family"
 };
