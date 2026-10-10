@@ -39,8 +39,8 @@ export const weddingData: WeddingData = {
       mother: "Sdn. Rupinder Kaur",
     },
     groomSide: {
-      grandfather: "S. Inder Singh Bhusari",
-      grandmother: "Sita Rani",
+      grandfather: "Late S. Inder Singh Bhusari",
+      grandmother: "Late Sita Rani",
       grandUncle: "Joginder Singh Bhusari",
       TwinkleStars: "Tirajveer Singh & Mehrajveer Singh",
       brother: "S. Inderdeep Singh Bhusari",
