@@ -180,7 +180,7 @@ export function FamilyDetails({ data }: FamilyDetailsProps) {
             With Love &amp; Regards
           </span>
           <p className="font-serif text-2xl sm:text-3xl font-extrabold text-[#8F1736] tracking-wide">
-            {data.familyRegards || "Bhusari Family"}
+            {data.familyRegards || "Bhusari Family & Kalra Family"}
           </p>
         </motion.div>
 
