@@ -92,8 +92,8 @@ export function Hero({ data, shouldPlayVideo = true, onVideoEnd }: HeroProps) {
             </div>
 
             {/* Special Invitation Callout - Big & Bold */}
-            <div className="mb-3 px-5 py-2.5 rounded-2xl bg-white/95 border border-pink-border/90 shadow-2xs backdrop-blur-xs flex flex-col items-center justify-center text-center">
-              <span className="text-[10px] sm:text-[11px] font-serif uppercase tracking-[0.25em] text-wine-dark/75 font-semibold mb-0.5">
+            <div className="mb-2 px-4 py-2.5 rounded-2xl bg-white/95 border border-pink-border/90 shadow-2xs backdrop-blur-xs flex flex-col items-center justify-center text-center">
+              <span className="text-[8px] sm:text-[9px] font-serif uppercase tracking-[0.25em] text-wine-dark/75 font-semibold mb-0.5">
                 Special Invitation
               </span>
               <span className="text-base sm:text-lg md:text-xl font-serif font-extrabold text-burgundy tracking-wide leading-snug drop-shadow-2xs">
