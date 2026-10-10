@@ -42,7 +42,7 @@ export const weddingData: WeddingData = {
       grandfather: "S. Inder Singh Bhusari",
       grandmother: "Sita Rani",
       grandUncle: "Joginder Singh Bhusari",
-      Twinkle Stars: "Tirajveer Singh & Mehrajveer Singh",
+      TwinkleStars: "Tirajveer Singh & Mehrajveer Singh",
       brother: "S. Inderdeep Singh Bhusari",
       brotherWife: "Sdn. Ishavjeet Kaur",
       tayaJi: "Dr. Ranjeet Singh Bhusari (Taya ji)",
