@@ -62,7 +62,7 @@ export const weddingData: WeddingData = {
       location: "River Stone Resort Orchha",
       mapUrl: "https://maps.app.goo.gl/9gwG8qpYAZz97mko8?g_st=ac",
       quote: "ਹਰਿ ਪ੍ਰਭੁ ਕਾਜੁ ਰਚਾਇਆ ॥\nਗੁਰਮੁਖਿ ਵੀਆਹਣੁ ਆਇਆ ॥",
-      videoUrl: "https://videotourl.com/videos/1791566654857-d8d2875b-43de-4bb2-9e5a-a983f695bfe8.mp4",
+      videoUrl: "https://videotourl.com/videos/1791566565534-761c05db-725a-4e5b-ad20-ebbce56dd121.mp4",
       description: "An auspicious evening of traditional Sagan blessings, ring exchange, and joyous celebratory moments."
     }
   ],
