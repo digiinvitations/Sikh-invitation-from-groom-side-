@@ -38,8 +38,17 @@ function PublicView() {
       setData(dbData);
     }
     loadData();
+
+    const handleUpdate = (e: any) => {
+      if (e.detail && isMounted) {
+        setData(e.detail);
+      }
+    };
+    window.addEventListener('weddingDataUpdated', handleUpdate);
+
     return () => {
       isMounted = false;
+      window.removeEventListener('weddingDataUpdated', handleUpdate);
     };
   }, []);
 

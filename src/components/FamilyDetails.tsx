@@ -152,19 +152,24 @@ export function FamilyDetails({ data }: FamilyDetailsProps) {
           </p>
         </motion.div>
 
-        {/* Special Invitation Callout */}
+        {/* Twinkle Stars of Family (Children of Family) */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, delay: 0.35 }}
-          className="w-full mt-5 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-white via-[#FFF5F7] to-white border border-[#D9A6B2] shadow-xs flex flex-col items-center text-center"
+          className="w-full mt-5 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-[#FFF5F8] via-white to-[#FFF5F8] border-2 border-[#E8B8C4] shadow-xs flex flex-col items-center text-center relative overflow-hidden"
         >
-          <span className="text-[10.5px] sm:text-[11px] uppercase tracking-[0.22em] text-[#8F1736] font-serif font-extrabold mb-1">
-            Special Invitation
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-amber-100/90 to-rose-100/90 border border-amber-300/80 text-[10.5px] sm:text-[11px] uppercase tracking-widest font-serif font-extrabold text-[#8F1736] mb-2 shadow-2xs">
+            <span className="text-amber-500">✨</span>
+            <span>Twinkle Stars of Family</span>
+            <span className="text-amber-500">✨</span>
+          </div>
+          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] text-wine-dark/70 font-serif font-medium mb-1">
+            Our Cherished Little Blessings
           </span>
           <p className="font-serif text-xl sm:text-2xl font-black text-burgundy tracking-wide">
-            {family?.specialInvitation || "Tirajveer Singh & Mehrajveer Singh"}
+            {family?.groomSide?.TwinkleStars || (family?.groomSide as any)?.twinkleStars || family?.twinkleStars || family?.specialInvitation || "Tirajveer Singh & Mehrajveer Singh"}
           </p>
         </motion.div>
 

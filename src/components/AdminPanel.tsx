@@ -63,6 +63,7 @@ export function AdminPanel() {
   } | null>(null);
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccessMessage, setImportSuccessMessage] = useState<string | null>(null);
+  const [saveStatus, setSaveStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
   const [copiedExportJson, setCopiedExportJson] = useState(false);
   const dragCounterRef = useRef(0);
 
@@ -115,11 +116,18 @@ export function AdminPanel() {
 
   const handleChange = (path: string, value: any) => {
     setData((prev: any) => {
+      if (!prev) return prev;
       const updated = { ...prev };
       const keys = path.split('.');
       let current = updated;
       for (let i = 0; i < keys.length - 1; i++) {
-        current = current[keys[i]];
+        const k = keys[i];
+        if (!current[k] || typeof current[k] !== 'object') {
+          current[k] = {};
+        } else {
+          current[k] = Array.isArray(current[k]) ? [...current[k]] : { ...current[k] };
+        }
+        current = current[k];
       }
       current[keys[keys.length - 1]] = value;
       return updated;
@@ -172,12 +180,22 @@ export function AdminPanel() {
   const handleSave = async () => {
     if (!data) return;
     setSaving(true);
+    setSaveStatus(null);
     try {
       await saveWeddingData(data);
-      alert("Settings saved successfully!");
+      setSaveStatus({
+        type: 'success',
+        message: 'All changes & media saved permanently! Storage and website updated.'
+      });
+      setTimeout(() => {
+        setSaveStatus((curr) => curr?.type === 'success' ? null : curr);
+      }, 5000);
     } catch (error) {
       console.error(error);
-      alert("Failed to save.");
+      setSaveStatus({
+        type: 'error',
+        message: 'Failed to save changes. Please try again.'
+      });
     } finally {
       setSaving(false);
     }
@@ -625,6 +643,30 @@ export function AdminPanel() {
             </button>
           </div>
         </div>
+
+        {saveStatus && (
+          <div className={`mb-6 p-4 rounded-xl border flex items-center justify-between gap-3 shadow-xs ${
+            saveStatus.type === 'success' 
+              ? 'bg-emerald-50 border-emerald-300 text-emerald-900' 
+              : 'bg-rose-50 border-rose-300 text-rose-900'
+          }`}>
+            <div className="flex items-center gap-2.5">
+              {saveStatus.type === 'success' ? (
+                <Check className="w-5 h-5 text-emerald-600 shrink-0" />
+              ) : (
+                <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />
+              )}
+              <span className="text-sm font-semibold">{saveStatus.message}</span>
+            </div>
+            <button 
+              type="button" 
+              onClick={() => setSaveStatus(null)}
+              className="p-1 hover:opacity-70 text-xs uppercase font-bold"
+            >
+              ✕
+            </button>
+          </div>
+        )}
 
         <div className="space-y-8">
 
@@ -1172,6 +1214,78 @@ export function AdminPanel() {
                <Input label="Dress Code" value={data.dressCode} onChange={(v) => handleChange("dressCode", v)} />
                <TextArea label="Closing Message" value={data.closingMessage} onChange={(v) => handleChange("closingMessage", v)} />
              </div>
+          </section>
+
+          {/* Family Blessings & Twinkle Stars */}
+          <section>
+            <h2 className="text-xl font-bold text-wine-dark mb-4">Family Blessings &amp; Twinkle Stars</h2>
+            <div className="space-y-4 bg-blush-light p-4 rounded-lg border border-pink-border/50">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Input 
+                  label="Dada Ji (Grandfather)" 
+                  value={data.familyDetails?.groomSide?.grandfather || ""} 
+                  onChange={(v) => handleChange("familyDetails.groomSide.grandfather", v)} 
+                />
+                <Input 
+                  label="Dadi Ji (Grandmother)" 
+                  value={data.familyDetails?.groomSide?.grandmother || ""} 
+                  onChange={(v) => handleChange("familyDetails.groomSide.grandmother", v)} 
+                />
+                <Input 
+                  label="Grand Uncle" 
+                  value={data.familyDetails?.groomSide?.grandUncle || ""} 
+                  onChange={(v) => handleChange("familyDetails.groomSide.grandUncle", v)} 
+                />
+                <Input 
+                  label="✨ Twinkle Stars of Family (Children)" 
+                  value={data.familyDetails?.groomSide?.TwinkleStars || (data.familyDetails?.groomSide as any)?.twinkleStars || ""} 
+                  onChange={(v) => {
+                    handleChange("familyDetails.groomSide.TwinkleStars", v);
+                    handleChange("familyDetails.specialInvitation", v);
+                  }} 
+                />
+                <Input 
+                  label="Respected Father (Groom Side)" 
+                  value={data.familyDetails?.groomSide?.father || ""} 
+                  onChange={(v) => handleChange("familyDetails.groomSide.father", v)} 
+                />
+                <Input 
+                  label="Respected Mother (Groom Side)" 
+                  value={data.familyDetails?.groomSide?.mother || ""} 
+                  onChange={(v) => handleChange("familyDetails.groomSide.mother", v)} 
+                />
+                <Input 
+                  label="Brother" 
+                  value={data.familyDetails?.groomSide?.brother || ""} 
+                  onChange={(v) => handleChange("familyDetails.groomSide.brother", v)} 
+                />
+                <Input 
+                  label="Sister-in-Law (Bhabhi)" 
+                  value={data.familyDetails?.groomSide?.brotherWife || ""} 
+                  onChange={(v) => handleChange("familyDetails.groomSide.brotherWife", v)} 
+                />
+                <Input 
+                  label="Taya Ji" 
+                  value={data.familyDetails?.groomSide?.tayaJi || ""} 
+                  onChange={(v) => handleChange("familyDetails.groomSide.tayaJi", v)} 
+                />
+                <Input 
+                  label="Tayi Ji" 
+                  value={data.familyDetails?.groomSide?.tayiJi || ""} 
+                  onChange={(v) => handleChange("familyDetails.groomSide.tayiJi", v)} 
+                />
+                <Input 
+                  label="Bride's Father" 
+                  value={data.familyDetails?.brideSide?.father || ""} 
+                  onChange={(v) => handleChange("familyDetails.brideSide.father", v)} 
+                />
+                <Input 
+                  label="Bride's Mother" 
+                  value={data.familyDetails?.brideSide?.mother || ""} 
+                  onChange={(v) => handleChange("familyDetails.brideSide.mother", v)} 
+                />
+              </div>
+            </div>
           </section>
 
           {/* RSVP & Contact Settings */}

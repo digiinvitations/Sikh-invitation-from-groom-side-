@@ -22,28 +22,26 @@ export function getLocalCachedWeddingData(slotId?: string): WeddingData {
   if (typeof window !== "undefined") {
     try {
       const activeSlot = slotId || getEnvironmentDocId();
-      const cached = localStorage.getItem(`wedding_cached_data_${activeSlot}`);
+      const cached = localStorage.getItem(`wedding_cached_data_${activeSlot}`) || localStorage.getItem("wedding_cached_data_backup");
       if (cached) {
         const parsed = JSON.parse(cached);
-        if (parsed && typeof parsed === "object" && (parsed.bride?.name || parsed.groom?.name)) {
+        if (parsed && typeof parsed === "object" && (parsed.bride?.name || parsed.groom?.name || parsed.weddingDate)) {
           return {
             ...defaultData,
             ...parsed,
-            weddingDate: defaultData.weddingDate,
-            weddingDateFormatted: defaultData.weddingDateFormatted,
-            weddingTimeFormatted: defaultData.weddingTimeFormatted,
-            weddingDayFormatted: defaultData.weddingDayFormatted,
-            heroMessage: defaultData.heroMessage,
-            invitationMessage: defaultData.invitationMessage,
-            closingMessage: defaultData.closingMessage,
-            events: defaultData.events,
-            timeline: defaultData.timeline,
-            venue: defaultData.venue,
-            rsvpContacts: defaultData.rsvpContacts,
-            rsvpPhones: defaultData.rsvpPhones,
-            familyDetails: defaultData.familyDetails,
-            invitedBy: defaultData.invitedBy,
-            familyRegards: defaultData.familyRegards,
+            bride: { ...defaultData.bride, ...(parsed.bride || {}) },
+            groom: { ...defaultData.groom, ...(parsed.groom || {}) },
+            venue: { ...defaultData.venue, ...(parsed.venue || {}) },
+            familyDetails: parsed.familyDetails ? {
+              ...defaultData.familyDetails,
+              ...parsed.familyDetails,
+              brideSide: { ...(defaultData.familyDetails?.brideSide || {}), ...(parsed.familyDetails?.brideSide || {}) },
+              groomSide: { ...(defaultData.familyDetails?.groomSide || {}), ...(parsed.familyDetails?.groomSide || {}) },
+            } : defaultData.familyDetails,
+            events: parsed.events && parsed.events.length > 0 ? parsed.events : defaultData.events,
+            timeline: parsed.timeline && parsed.timeline.length > 0 ? parsed.timeline : defaultData.timeline,
+            rsvpContacts: parsed.rsvpContacts && parsed.rsvpContacts.length > 0 ? parsed.rsvpContacts : defaultData.rsvpContacts,
+            rsvpPhones: parsed.rsvpPhones && parsed.rsvpPhones.length > 0 ? parsed.rsvpPhones : defaultData.rsvpPhones,
           };
         }
       }
@@ -270,27 +268,26 @@ export async function getWeddingData(): Promise<WeddingData> {
     const mergedData: WeddingData = {
       ...defaultData,
       ...remoteData,
-      weddingDate: defaultData.weddingDate,
-      weddingDateFormatted: defaultData.weddingDateFormatted,
-      weddingTimeFormatted: defaultData.weddingTimeFormatted,
-      weddingDayFormatted: defaultData.weddingDayFormatted,
-      heroMessage: defaultData.heroMessage,
-      invitationMessage: defaultData.invitationMessage,
-      closingMessage: defaultData.closingMessage,
-      events: defaultData.events,
-      timeline: defaultData.timeline,
-      venue: defaultData.venue,
-      rsvpContacts: defaultData.rsvpContacts,
-      rsvpPhones: defaultData.rsvpPhones,
-      familyDetails: defaultData.familyDetails,
-      invitedBy: defaultData.invitedBy,
-      familyRegards: defaultData.familyRegards,
+      bride: { ...defaultData.bride, ...(remoteData.bride || {}) },
+      groom: { ...defaultData.groom, ...(remoteData.groom || {}) },
+      venue: { ...defaultData.venue, ...(remoteData.venue || {}) },
+      familyDetails: remoteData.familyDetails ? {
+        ...defaultData.familyDetails,
+        ...remoteData.familyDetails,
+        brideSide: { ...(defaultData.familyDetails?.brideSide || {}), ...(remoteData.familyDetails?.brideSide || {}) },
+        groomSide: { ...(defaultData.familyDetails?.groomSide || {}), ...(remoteData.familyDetails?.groomSide || {}) },
+      } : defaultData.familyDetails,
+      events: remoteData.events && remoteData.events.length > 0 ? remoteData.events : defaultData.events,
+      timeline: remoteData.timeline && remoteData.timeline.length > 0 ? remoteData.timeline : defaultData.timeline,
+      rsvpContacts: remoteData.rsvpContacts && remoteData.rsvpContacts.length > 0 ? remoteData.rsvpContacts : defaultData.rsvpContacts,
+      rsvpPhones: remoteData.rsvpPhones && remoteData.rsvpPhones.length > 0 ? remoteData.rsvpPhones : defaultData.rsvpPhones,
     };
 
     // Cache locally per-slot for instant offline availability with zero cross-slot leakage
     if (typeof window !== 'undefined') {
       try {
         localStorage.setItem(`wedding_cached_data_${slotId}`, JSON.stringify(mergedData));
+        localStorage.setItem("wedding_cached_data_backup", JSON.stringify(mergedData));
       } catch (e) {}
     }
 
@@ -315,10 +312,12 @@ export async function saveWeddingData(data: WeddingData): Promise<void> {
 
   const slotId = getEnvironmentDocId();
 
-  // Update local cache immediately for this specific slot
+  // Update local cache immediately for this specific slot and global backup
   if (typeof window !== 'undefined') {
     try {
       localStorage.setItem(`wedding_cached_data_${slotId}`, JSON.stringify(cleanData));
+      localStorage.setItem("wedding_cached_data_backup", JSON.stringify(cleanData));
+      window.dispatchEvent(new CustomEvent('weddingDataUpdated', { detail: cleanData }));
     } catch (e) {}
   }
 
@@ -329,7 +328,7 @@ export async function saveWeddingData(data: WeddingData): Promise<void> {
   }
 
   try {
-    // Save directly to the current isolated slot
+    // Save directly to the current isolated slot in Firestore
     const docRef = doc(db, "weddingConfig", slotId);
     await fetchWithTimeout(setDoc(docRef, cleanData), 5000);
 

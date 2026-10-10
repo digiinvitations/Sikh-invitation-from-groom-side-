@@ -91,16 +91,6 @@ export function Hero({ data, shouldPlayVideo = true, onVideoEnd }: HeroProps) {
               </span>
             </div>
 
-            {/* Special Invitation Callout - Big & Bold */}
-            <div className="mb-2 px-4 py-2.5 rounded-2xl bg-white/95 border border-pink-border/90 shadow-2xs backdrop-blur-xs flex flex-col items-center justify-center text-center">
-              <span className="text-[8px] sm:text-[9px] font-serif uppercase tracking-[0.25em] text-wine-dark/75 font-semibold mb-0.5">
-                Special Invitation
-              </span>
-              <span className="text-base sm:text-lg md:text-xl font-serif font-extrabold text-burgundy tracking-wide leading-snug drop-shadow-2xs">
-                {data.invitedBy || "Tirajveer Singh & Mehrajveer Singh"}
-              </span>
-            </div>
-
             {/* Prominent Ceremony Badge in Hero Section */}
             <div className="mb-3 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#8F1736] via-[#A91F3D] to-[#8F1736] text-white shadow-xs flex items-center justify-center gap-1.5 ring-2 ring-pink-accent/30">
               <span className="text-[11px] sm:text-xs font-serif font-extrabold uppercase tracking-[0.2em] drop-shadow-xs">

@@ -36,23 +36,26 @@ export interface VenueDetails {
 
 export interface FamilyDetails {
   brideSide: {
-    father: string;
-    mother: string;
+    father?: string;
+    mother?: string;
   };
   groomSide: {
-    grandfather: string;
-    grandmother: string;
-    grandUncle: string;
-    father: string;
-    mother: string;
-    brother: string;
-    brotherWife: string;
-    tayaJi: string;
-    tayiJi: string;
-    drTaranpreetSingh: string;
-    drHargeetKaur: string;
+    grandfather?: string;
+    grandmother?: string;
+    grandUncle?: string;
+    TwinkleStars?: string;
+    twinkleStars?: string;
+    father?: string;
+    mother?: string;
+    brother?: string;
+    brotherWife?: string;
+    tayaJi?: string;
+    tayiJi?: string;
+    drTaranpreetSingh?: string;
+    drHargeetKaur?: string;
   };
-  specialInvitation: string;
+  specialInvitation?: string;
+  twinkleStars?: string;
 }
 
 export interface WeddingData {
