@@ -41,7 +41,7 @@ export function ClosingMessage({ data }: ClosingMessageProps) {
             Love &amp; Regards
           </span>
           <p className="font-serif text-2xl md:text-3xl font-bold text-[#8F1736] tracking-wide">
-            {data.familyRegards || "Bhusari Family"}
+            {data.familyRegards || "Bhusari Family & Kalra Family"}
           </p>
         </div>
       </motion.div>
