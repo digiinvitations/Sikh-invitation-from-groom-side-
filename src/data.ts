@@ -50,7 +50,7 @@ export const weddingData: WeddingData = {
       drTaranpreetSingh: "Dr. Taranpreet Singh Bhusari",
       drHargeetKaur: "Dr. Hargeet Kaur",
     },
-    specialInvitation: "S. Kuldeep Singh Bhusari & Sdn. Ravinder Kaur",
+    specialInvitation: "Tirajveer Singh & Mehrajveer Singh",
   },
   events: [
     {
