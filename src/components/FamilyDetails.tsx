@@ -48,7 +48,7 @@ export function FamilyDetails({ data }: FamilyDetailsProps) {
                 Dada Ji &amp; Dadi Ji (Grandparents)
               </span>
               <p className="font-serif text-lg sm:text-xl font-extrabold text-burgundy tracking-wide leading-snug">
-                {family?.groomSide.grandfather || "Late S. Inder Singh Bhusari"} &amp; {family?.groomSide.grandspecialInvitions Sita Rani"}
+                {family?.groomSide.grandfather || "S. Inder Singh Bhusari"} &amp; {family?.groomSide.grandmother || "Sita Rani"}
               </p>
             </div>
 
@@ -164,7 +164,7 @@ export function FamilyDetails({ data }: FamilyDetailsProps) {
             Special Invitation
           </span>
           <p className="font-serif text-xl sm:text-2xl font-black text-burgundy tracking-wide">
-            {family?.Specialinvitation || "Tirajveer Singh & Mehrajveer Singh"}
+            {family?.specialInvitation || "Tirajveer Singh & Mehrajveer Singh"}
           </p>
         </motion.div>
 
