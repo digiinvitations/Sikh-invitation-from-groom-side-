@@ -25,7 +25,7 @@ export const weddingData: WeddingData = {
   ogImageUrl: "https://www.image2url.com/r2/default/images/1789823353370-fe58bc8c-293e-49ad-b7e4-1d851ca4b1f0.jpg",
   heroMessage: "With the divine blessings of Sri Guru Granth Sahib Ji & Waheguru Ji\nwe cordially invite you to celebrate the auspicious Sagan & Ring Ceremony of",
   invitationMessage: "With the heavenly blessings of Sri Guru Granth Sahib Ji, our respected elders, and Waheguru Ji, we are honored to invite you to celebrate the auspicious Sagan & Ring Ceremony of Jaspreet & Jasmeet as they begin their sacred journey together in faith, love, and devotion.\n\nWe humbly request your gracious presence and blessings on this joyful occasion.",
-  invitedBy: "S. Inder Singh Bhusari & Sita Rani",
+  invitedBy: "Late S. Inder Singh Bhusari & Late Sita Rani",
   familyRegards: "Bhusari Family & Kalra Family",
   rsvpAddress: "",
   rsvpPhones: ["9415031002", "7860333336"],
