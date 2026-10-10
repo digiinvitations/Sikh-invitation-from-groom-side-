@@ -164,7 +164,7 @@ export function FamilyDetails({ data }: FamilyDetailsProps) {
             Special Invitation
           </span>
           <p className="font-serif text-xl sm:text-2xl font-black text-burgundy tracking-wide">
-            {family?.Twinklestars || "Tirajveer Singh & Mehrajveer Singh"}
+            {family?.Specialinvitation || "Tirajveer Singh & Mehrajveer Singh"}
           </p>
         </motion.div>
 
