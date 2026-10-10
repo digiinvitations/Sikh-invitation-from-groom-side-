@@ -1,113 +1,189 @@
-import React from "react";
-import { WeddingData } from "../types";
+import { motion } from "motion/react";
 import { HeartDivider } from "./HeartDivider";
+import { WeddingData } from "../types";
 import { Users, Heart, Sparkles } from "lucide-react";
 
-interface FamilyBlessingsProps {
+interface FamilyDetailsProps {
   data: WeddingData;
 }
 
-export function FamilyBlessings({ data }: FamilyBlessingsProps) {
+export function FamilyDetails({ data }: FamilyDetailsProps) {
+  const family = data.familyDetails;
+
   return (
-    <section className="py-16 px-5 bg-gradient-to-b from-[#FFFDF9] via-blush-light to-[#FDF5F6] flex flex-col items-center text-center relative overflow-hidden border-y border-amber-200/50">
-      {/* Decorative Golden Ambient Accent */}
-      <div className="absolute top-0 right-0 w-44 h-44 bg-amber-200/25 rounded-full blur-2xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-44 h-44 bg-pink-200/25 rounded-full blur-2xl pointer-events-none" />
-
-      <div className="w-full max-w-md mx-auto relative z-10 flex flex-col items-center">
-        {/* Sacred Ik Onkar Symbol */}
-        <span className="text-3xl text-wine-dark font-serif font-bold select-none mb-1">ੴ</span>
-
-        {/* Big & Slightly Bold Heading as requested */}
-        <h2 className="font-script text-5xl sm:text-6xl text-wine-dark font-bold drop-shadow-xs tracking-wide mt-1">
-          Family Blessings
-        </h2>
+    <section className="py-20 px-4 sm:px-6 bg-gradient-to-b from-blush-main via-[#FDF5F6] to-blush-main flex flex-col items-center relative overflow-hidden">
+      <div className="w-full max-w-lg flex flex-col items-center">
         
-        <p className="font-serif text-sm sm:text-base font-bold text-burgundy tracking-[0.2em] uppercase mt-1">
-          Cordial Invitation &amp; Family Honors
+        {/* Sacred Ik Onkar & Heading */}
+        <span className="text-2xl text-[#8F1736] font-serif font-bold select-none mb-1">ੴ</span>
+        <div className="flex items-center gap-2 text-pink-accent mb-2">
+          <Users className="w-5 h-5 text-burgundy" strokeWidth={1.5} />
+        </div>
+        <h2 className="font-serif text-3xl sm:text-4xl uppercase tracking-widest text-burgundy text-center drop-shadow-sm font-bold">
+          With Family Blessings
+        </h2>
+        <p className="font-serif text-xs uppercase tracking-[0.22em] text-wine-dark/75 mt-1 text-center font-medium">
+          Honored Elders &amp; Beloved Family • Sagan &amp; Ring Ceremony Blessings
         </p>
 
         <HeartDivider />
 
-        {/* Complete Family Names & Blessings Card */}
-        <div className="w-full mt-6 p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-[#FFFDF8] via-white to-[#FDF7F8] border border-amber-200/90 shadow-sm text-center">
-          
-          {/* Special Invitation */}
-          <div className="mb-5 pb-4 border-b border-amber-100/90">
-            <span className="text-[11px] sm:text-xs uppercase tracking-widest font-serif font-bold text-wine-dark/70 block mb-1">
-              Special Invitation
-            </span>
-            <p className="font-serif font-extrabold text-lg sm:text-xl text-burgundy tracking-wide">
-              S. Kuldeep Singh Bhusari &amp; Sdn. Ravinder Kaur
-            </p>
+        {/* Grandparents & Respected Elders Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8 }}
+          className="w-full mt-6 p-5 sm:p-6 rounded-2xl bg-white/95 border border-pink-border/90 shadow-2xs backdrop-blur-xs flex flex-col items-center text-center relative overflow-hidden"
+        >
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blush-light border border-pink-border text-[10px] sm:text-[10.5px] uppercase tracking-widest font-serif font-bold text-wine-dark mb-3">
+            <Sparkles className="w-3 h-3 text-pink-accent" />
+            <span>Blessings of Respected Elders</span>
+            <Sparkles className="w-3 h-3 text-pink-accent" />
           </div>
 
-          {/* Grandparents & Elders */}
-          <div className="mb-5 pb-4 border-b border-amber-100/90 space-y-1">
-            <span className="text-[11px] sm:text-xs uppercase tracking-widest font-serif font-bold text-wine-dark/70 block">
-              Respected Grandparents &amp; Elders
-            </span>
-            <p className="font-serif font-bold text-base sm:text-lg text-wine-dark">
-             Late S. Inder Singh Bhusari &amp; Late Sita Rani
-            </p>
-            <p className="font-serif text-sm sm:text-base text-wine-dark/90 font-medium">
-              Grand Uncle: <strong className="text-wine-dark font-bold">Joginder Singh Bhusari</strong>
-            </p>
+          <div className="space-y-3 w-full">
+            <div>
+              <span className="text-[10.5px] uppercase tracking-widest text-wine-dark/65 font-serif font-semibold block mb-0.5">
+                Dada Ji &amp; Dadi Ji (Grandparents)
+              </span>
+              <p className="font-serif text-lg sm:text-xl font-extrabold text-burgundy tracking-wide leading-snug">
+                {family?.groomSide.grandfather || "Late S. Inder Singh Bhusari"} &amp; {family?.groomSide.grandspecialInvitions Sita Rani"}
+              </p>
+            </div>
+
+            <div className="pt-2 border-t border-pink-border/40">
+              <span className="text-[10.5px] uppercase tracking-widest text-wine-dark/65 font-serif font-semibold block mb-0.5">
+                Grand Uncle
+              </span>
+              <p className="font-serif text-base sm:text-lg font-bold text-[#8F1736] tracking-wide">
+                {family?.groomSide.grandUncle || "Joginder Singh Bhusari"}
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Respected Parents Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="w-full mt-4 p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-white to-[#FDF4F6] border-2 border-[#D9A6B2]/60 shadow-xs flex flex-col items-center text-center"
+        >
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#8F1736] text-white text-[10.5px] uppercase tracking-widest font-serif font-bold mb-3 shadow-2xs">
+            <Heart className="w-3 h-3 fill-current" />
+            <span>Respected Parents</span>
+            <Heart className="w-3 h-3 fill-current" />
           </div>
 
-          {/* Twinkle Stars of Family */}
-          <div className="mb-5 pb-4 border-b border-amber-100/90 space-y-1">
-            <span className="text-[11px] sm:text-xs uppercase tracking-widest font-serif font-bold text-wine-dark/70 block">
-              Twinkle Stars of Family
-            </span>
-            <p className="font-serif font-bold text-base sm:text-lg text-wine-dark">
-              Tirajveer Singh &amp; Mehrajveer Singh
-            </p>
-          </div>
+          <p className="font-serif text-xl sm:text-2xl font-extrabold text-burgundy tracking-wide leading-snug">
+            {family?.groomSide.father || "S. Kuldeep Singh Bhusari"}
+          </p>
+          <span className="font-script text-2xl text-pink-accent my-0.5">&amp;</span>
+          <p className="font-serif text-xl sm:text-2xl font-extrabold text-burgundy tracking-wide leading-snug">
+            {family?.groomSide.mother || "Sdn. Ravinder Kaur"}
+          </p>
+        </motion.div>
 
-          {/* Brother & Sister-in-law */}
-          <div className="mb-5 pb-4 border-b border-amber-100/90 space-y-1">
-            <span className="text-[11px] sm:text-xs uppercase tracking-widest font-serif font-bold text-wine-dark/70 block">
-              Brother &amp; Sister-in-law (Bhabhi Ji)
-            </span>
-            <p className="font-serif font-bold text-base sm:text-lg text-wine-dark">
-              S. Inderdeep Singh Bhusari &amp; Sdn. Ishavjeet Kaur
-            </p>
-          </div>
+        {/* Taya Ji & Tayi Ji */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: 0.15 }}
+          className="w-full mt-4 p-5 rounded-2xl bg-white/95 border border-pink-border/90 shadow-2xs flex flex-col items-center text-center"
+        >
+          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-widest text-wine-dark/70 font-serif font-bold mb-2">
+            Taya Ji &amp; Tayi Ji
+          </span>
+          <p className="font-serif text-base sm:text-lg font-bold text-burgundy tracking-wide leading-snug">
+            Dr. Ranjeet Singh Bhusari &amp; Sdn. Manjeet Kaur
+          </p>
+        </motion.div>
 
-          {/* Taya Ji & Tayi Ji & Family */}
-          <div className="mb-5 pb-4 border-b border-amber-100/90 space-y-1">
-            <span className="text-[11px] sm:text-xs uppercase tracking-widest font-serif font-bold text-wine-dark/70 block">
-              Respected Elders &amp; Family
-            </span>
-            <p className="font-serif font-bold text-sm sm:text-base text-wine-dark">
-              Dr. Ranjeet Singh Bhusari (Taya Ji) &amp; Sdn. Manjeet Kaur (Tayi Ji)
-            </p>
-            <p className="font-serif text-sm sm:text-base text-wine-dark/90 font-medium">
-              Dr. Taranpreet Singh Bhusari &amp; Dr. Hargeet Kaur
-            </p>
-          </div>
+        {/* Brother & Bhabhi Ji */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="w-full mt-4 p-5 rounded-2xl bg-white/95 border border-pink-border/90 shadow-2xs flex flex-col items-center text-center"
+        >
+          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-widest text-wine-dark/70 font-serif font-bold mb-2">
+            Brother &amp; Sister-in-Law (Bhabhi)
+          </span>
+          <p className="font-serif text-base sm:text-lg font-bold text-burgundy tracking-wide leading-snug">
+            {family?.groomSide.brother || "S. Inderdeep Singh Bhusari"} &amp; {family?.groomSide.brotherWife || "Sdn. Ishavjeet Kaur"}
+          </p>
+        </motion.div>
 
-          {/* Bride Side Family */}
-          <div className="mb-4 space-y-1">
-            <span className="text-[11px] sm:text-xs uppercase tracking-widest font-serif font-bold text-wine-dark/70 block">
-              Bride Side Respected Family
-            </span>
-            <p className="font-serif font-bold text-sm sm:text-base text-wine-dark">
-              S. Paramjeet Singh Gandhi &amp; Sdn. Rupinder Kaur
-            </p>
+        {/* Family Members Doctors Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: 0.25 }}
+          className="w-full mt-4 p-5 rounded-2xl bg-white/95 border border-pink-border/90 shadow-2xs flex flex-col items-center text-center"
+        >
+          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-widest text-wine-dark/70 font-serif font-bold mb-2">
+            With Love &amp; Affection
+          </span>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 font-serif text-base sm:text-lg font-bold text-[#8F1736]">
+            <span>{family?.groomSide.drTaranpreetSingh || "Dr. Taranpreet Singh Bhusari"}</span>
+            <span className="hidden sm:inline text-pink-accent">•</span>
+            <span>{family?.groomSide.drHargeetKaur || "Dr. Hargeet Kaur"}</span>
           </div>
+        </motion.div>
 
-          {/* Closing regards */}
-          <div className="mt-5 pt-4 border-t border-amber-200/80">
-            <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.25em] font-serif font-bold text-wine-dark/60 block mb-0.5">
-              With Warm Compliments
-            </span>
-            <p className="font-serif font-bold text-base text-burgundy">
-              Bhusari Family &amp; Kalra Family 
-            </p>
-          </div>
-        </div>
+        {/* Bride's Respected Parents Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="w-full mt-4 p-5 rounded-2xl bg-white/95 border border-pink-border/90 shadow-2xs flex flex-col items-center text-center"
+        >
+          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-widest text-wine-dark/70 font-serif font-bold mb-1.5">
+            Bride&apos;s Respected Parents
+          </span>
+          <p className="font-serif text-base sm:text-lg font-bold text-burgundy tracking-wide leading-snug">
+            {family?.brideSide.father || "S. Paramjeet Singh Gandhi"} &amp; {family?.brideSide.mother || "Sdn. Rupinder Kaur"}
+          </p>
+        </motion.div>
+
+        {/* Special Invitation Callout */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: 0.35 }}
+          className="w-full mt-5 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-white via-[#FFF5F7] to-white border border-[#D9A6B2] shadow-xs flex flex-col items-center text-center"
+        >
+          <span className="text-[10.5px] sm:text-[11px] uppercase tracking-[0.22em] text-[#8F1736] font-serif font-extrabold mb-1">
+            Special Invitation
+          </span>
+          <p className="font-serif text-xl sm:text-2xl font-black text-burgundy tracking-wide">
+            {family?.Twinklestars || "Tirajveer Singh & Mehrajveer Singh"}
+          </p>
+        </motion.div>
+
+        {/* Family Name & Regards Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-6 flex flex-col items-center text-center"
+        >
+          <span className="text-[10px] uppercase tracking-[0.25em] text-wine-dark/70 font-serif font-semibold mb-1">
+            With Love &amp; Regards
+          </span>
+          <p className="font-serif text-2xl sm:text-3xl font-extrabold text-[#8F1736] tracking-wide">
+            {data.familyRegards || "Bhusari Family & Kalra Family"}
+          </p>
+        </motion.div>
+
       </div>
     </section>
   );
